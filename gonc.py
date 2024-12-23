@@ -25,7 +25,7 @@ def get_img_as_base64(file_path):
     return base64.b64encode(data).decode("utf-8")
 
 # Gambar latar belakang
-bg_image = get_img_as_base64("./Images/YEH BGG.png")
+bg_image = get_img_as_base64("./Images/BGG.png")
 
 # CSS untuk background image
 st.markdown(
