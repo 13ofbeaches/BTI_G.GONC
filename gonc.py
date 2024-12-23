@@ -1,35 +1,32 @@
+import requests
 import streamlit as st
 import pandas as pd
 import spacy
 from PyPDF2 import PdfReader
 import matplotlib.pyplot as plt
 from io import BytesIO
+import base64
 
-# Memuat model spaCy untuk bahasa Jerman
-nlp = spacy.load("de_core_news_sm")
+import spacy
 
-# Styling menggunakan CSS
-st.markdown(
-    """
-    <style>
-    /* Warna latar belakang utama */
-    body {
-        background-color: #2f4f4f;
-        color: #ede8e7;
-    }
-    /* Styling untuk sidebar */
-    .css-1y4p8pa {
-        background-color: #612525;
-        color: #ede8e7;
-    }
-    /* Gaya umum untuk teks */
-    .stTextInput, .stButton, .stFileUploader {
-        color: #ede8e7;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# Mencoba memuat model spaCy
+try:
+    nlp = spacy.load('de_core_news_sm')
+except IOError:
+    # Menampilkan pesan error jika model tidak ditemukan
+    import os
+    os.system("python -m spacy download de_core_news_sm")  # Instal model secara otomatis
+    nlp = spacy.load('de_core_news_sm')  # Coba muat ulang model setelah instalasi
+
+file_url = "https://drive.google.com/uc?export=download&id=1NToNJOu9TOnr2h9n7vz_eusOcLjVM8rK"
+
+def get_img_as_base64(url):
+    # Mengambil gambar dari URL
+    response = requests.get(url)
+    if response.status_code == 200:
+        return base64.b64encode(response.content).decode()
+    else:
+        raise Exception(f"Gagal mengambil gambar dari URL: {url}")
 
 # Fungsi untuk membaca konten file PDF
 def read_pdf(file):

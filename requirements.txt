@@ -1,5 +1,7 @@
 streamlit
 pandas
 spacy
+https://github.com/explosion/spacy-models/releases/download/de_core_news_sm-3.8.0/de_core_news_sm-3.8.0.tar.gz
 PyPDF2
 matplotlib
+requests
