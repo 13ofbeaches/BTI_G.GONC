@@ -132,14 +132,14 @@ def faq_system():
             st.write(answer)
 
 # Streamlit App
-st.title("G.GONC: Analisis Grammatik Bahasa Jerman")
-st.write("Web ini mendeteksi berbagai fitur gramatik bahasa Jerman dari file atau teks langsung.")
+st.title("G.GONC: Web Pendeteksi Grammatik Bahasa Jerman")
+st.write("Hallo Göngerz! Met datang yh di G.GONC, si web pendeteksi grammatik bahasa Jerman yang super kece dan paten hanya dengan unggah file PDF, TXT, atau mau ketik langsung juga boleh. Sekarang, cobain yuk!.")
 st.sidebar.title("Navigasi")
 menu = st.sidebar.radio("Menu:", ["Analisis Teks", "FAQ"])
 
 # Input teks atau unggahan file
 input_text = ""
-uploaded_file = st.file_uploader("Unggah file (PDF atau TXT):", type=["pdf", "txt"])
+uploaded_file = st.file_uploader("Unggah file di sini (PDF atau TXT):", type=["pdf", "txt"])
 
 if uploaded_file is not None:
     if uploaded_file.type == "application/pdf":
@@ -149,7 +149,7 @@ if uploaded_file is not None:
     st.write("### Isi File:")
     st.write(input_text)
 else:
-    input_text = st.text_area("Atau masukkan teks bahasa Jerman:", height=200)
+    input_text = st.text_area("Atau masukkan teks bahasa Jerman punya kamuh:", height=200)
 
 # Pilihan Analisis
 analysis_option = st.selectbox("Pilih jenis analisis:", [
