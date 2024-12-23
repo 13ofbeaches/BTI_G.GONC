@@ -18,18 +18,30 @@ except IOError:
     os.system("python -m spacy download de_core_news_sm")  # Instal model secara otomatis
     nlp = spacy.load('de_core_news_sm')  # Coba muat ulang model setelah instalasi
 
-### Background Image
-st.html(
+# Fungsi untuk membaca gambar dan mengonversinya ke Base64
+def get_img_as_base64(file_path):
+    with open(file_path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode("utf-8")
+
+# Gambar latar belakang
+bg_image = get_img_as_base64("./Images/YEH BG.png")
+
+# CSS untuk background image
+st.markdown(
     f"""
     <style>
     [data-testid="stAppViewContainer"] {{
-    background-image: url("data:image/png;base64,{get_img_as_base64("./Images/BARU.png")}");
-    background-size: cover;
-    background-position: center center; 
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    }}
-    """)
+        background-image: url("data:image/png;base64,{bg_image}");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Fungsi untuk membaca konten file PDF
 def read_pdf(file):
