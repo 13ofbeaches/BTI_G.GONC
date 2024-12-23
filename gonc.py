@@ -18,15 +18,18 @@ except IOError:
     os.system("python -m spacy download de_core_news_sm")  # Instal model secara otomatis
     nlp = spacy.load('de_core_news_sm')  # Coba muat ulang model setelah instalasi
 
-file_url = "https://drive.google.com/uc?export=download&id=1NToNJOu9TOnr2h9n7vz_eusOcLjVM8rK"
-
-def get_img_as_base64(url):
-    # Mengambil gambar dari URL
-    response = requests.get(url)
-    if response.status_code == 200:
-        return base64.b64encode(response.content).decode()
-    else:
-        raise Exception(f"Gagal mengambil gambar dari URL: {url}")
+### Background Image
+st.html(
+    f"""
+    <style>
+    [data-testid="stAppViewContainer"] {{
+    background-image: url("data:image/png;base64,{get_img_as_base64("./Images/BARU.png")}");
+    background-size: cover;
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    }}
+    """)
 
 # Fungsi untuk membaca konten file PDF
 def read_pdf(file):
@@ -133,7 +136,7 @@ def faq_system():
 
 # Streamlit App
 st.title("G.GONC: Web Pendeteksi Grammatik Bahasa Jerman")
-st.write("Hallo Göngerz! Met datang yh di G.GONC, si web pendeteksi grammatik bahasa Jerman yang super kece dan paten hanya dengan unggah file PDF, TXT, atau mau ketik langsung juga boleh. Sekarang, cobain yuk!.")
+st.write("Hallo Göngerz! Met datang yh di G.GONC, si web pendeteksi grammatik bahasa Jerman yang super kece dan paten dengan hanya unggah file PDF, TXT, atau mau ketik langsung juga boleh. Sekarang, cobain yuk!")
 st.sidebar.title("Navigasi")
 menu = st.sidebar.radio("Menu:", ["Analisis Teks", "FAQ"])
 
